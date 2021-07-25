@@ -1,0 +1,6 @@
+# Project specific stuff
+.vscode
+.pyenv/
+assets/
+data/
+credentials.ini
