@@ -9,6 +9,9 @@ from dropbox_utils.dropbox_writer import DropboxWriter
 
 
 def main():
+    """
+    Main entry point for the script.
+    """
 
     # Setup paths
     config_path = "./src/uncommitted/config.ini"

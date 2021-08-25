@@ -12,6 +12,10 @@ from json import load as load_json
 
 
 class TweetReader:
+    """
+    A class to leverage the twitter API to read tweets.
+    """
+
     def __init__(self, config_path: str, api_credentials_path: str) -> None:
 
         self.config: ConfigParser = ConfigParser()
@@ -25,6 +29,9 @@ class TweetReader:
         self.__config_api()
 
     def __config_api(self) -> None:
+        """
+        Configure the Tweepy API object.
+        """
 
         consumer_key = self.credentials.get("TwitterAPI", "api_key")
         consumer_secret = self.credentials.get("TwitterAPI", "api_secret_key")
@@ -38,6 +45,9 @@ class TweetReader:
     def get_batch_of_tweets(
         self, company_name, query: str, geocode: str, last_tweet_id: int
     ) -> DataFrame:
+        """
+        Get a single 'batch' of tweets according to a single twitter query.
+        """
         try:
             # Creation of query method using parameters
             tweets = Cursor(
@@ -81,6 +91,10 @@ class TweetReader:
             time.sleep(3)
 
     def get_all_tweets(self):
+        """
+        Iterator that uses the query dict to fetch tweets associated
+        with different queries.
+        """
 
         query_dict_path: str = self.config.get("QUERIES", "query_dict_path")
         last_tweet_id: int = int(self.config.get("TWEETS", "last_tweet_id"))
@@ -123,7 +137,7 @@ class TweetReader:
             return tweets_df
 
         self.config["TWEETS"]["last_tweet_id"] = str(max_tweet_id)
-        with open(self.config_path, 'w') as f:
+        with open(self.config_path, "w") as f:
             self.config.write(f)
             f.close()
 
