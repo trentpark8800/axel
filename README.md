@@ -2,7 +2,9 @@
 
 This project is a simple data pipeline which uses the Twitter API to extract daily tweet data (intended for tweets about stocks), then processes these tweets by adding sentiment score to them, using the VADER sentiment analysis model and finally uploads the tweets with their sentiment scores to a DropBox folder.
   
-The project is named 'Axel' after the character Bobby Axelrod in the show 'Billions'... It was intented for stock value sentiment on Twitter, and it made sense at the time...
+The project is named 'Axel' after the character Bobby Axelrod in the show 'Billions'... It was intented for stock value sentiment on Twitter... it made sense at the time...
+  
+The pipeline is run by the command `python src/orchestrator/orchestrator.py`.
   
 ## Setup
 
