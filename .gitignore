@@ -139,6 +139,7 @@ cython_debug/
 
 # Project specific stuff
 .vscode
+.ipynb
 .pyenv/
 assets/
 data/
