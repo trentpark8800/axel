@@ -37,6 +37,6 @@ class DropboxWriter:
         Basic writer function for the class.
         """
         write_path = (
-            f"""{self.config.get("OUTPUT", "dropbox_write_path")}/{file_name}"""
+            f"""{self.config.get("OUTPUT", "dropbox_write_path")}\\{file_name}"""
         )
         self.api.files_upload(data.encode(encoding), path=write_path)

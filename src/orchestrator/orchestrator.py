@@ -14,8 +14,8 @@ def main():
     """
 
     # Setup paths
-    config_path = "./src/uncommitted/config.ini"
-    credentials_path = "./src/uncommitted/credentials.ini"
+    config_path = ".\\src\\uncommitted\\config.ini"
+    credentials_path = ".\\src\\uncommitted\\credentials.ini"
 
     # Setup twitter API
     tweet_reader: TweetReader = TweetReader(
