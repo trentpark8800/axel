@@ -1,0 +1,1 @@
+".\\.pyenv\\Scripts\\python.exe" ".\\src\\orchestrator\\orchestrator.py"
