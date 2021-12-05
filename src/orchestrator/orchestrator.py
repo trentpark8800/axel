@@ -2,10 +2,11 @@
 Orchestrator/Driver for the application.
 """
 import datetime as dt
+from sqlite3.dbapi2 import connect
 
 from twitter_utils.tweet_reader import TweetReader
 from twitter_utils.tweet_sentiment import TwitterSentimentAnalyzer
-from dropbox_utils.dropbox_writer import DropboxWriter
+from database_utils.sqlite_writer import SqliteWriter
 
 
 def main():
@@ -36,19 +37,11 @@ def main():
         tweets_df=tweets_df, tweet_col_name="tweet"
     )
 
-    # Instantiate dropbox writer
-    dropbox_writer = DropboxWriter(
-        config_path=config_path, api_credentials_path=credentials_path
-    )
+    # Setup writer for sql database
+    sql_db_writer = SqliteWriter(config_path=config_path)
 
-    # Convert dataframe to string for dropbox upload
-    data_string: str = tweets_df.to_csv()
-
-    # Upload to dropbox
-    file_name = (
-        f"daily_tweets_{dt.datetime.strftime(dt.date.today(), format='%Y%m%d')}.csv"
-    )
-    dropbox_writer.write_raw_file_to_dropbox(data=data_string, file_name=file_name)
+    # Append dataframe to the Sqlite database
+    sql_db_writer.append_dataframe_to_sql_table(analyzed_tweets_df)
 
 
 if __name__ == "__main__":
